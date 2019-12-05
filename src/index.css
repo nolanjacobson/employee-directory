@@ -14,8 +14,39 @@ body {
 .strizeHeader {
   text-align:center;
 }
+
 ul {
   display:flex;
   list-style:none;
   justify-content:space-evenly;
+  flex-wrap:wrap;
+}
+
+form {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.homePageUl {
+
+  display:flex;
+  flex-wrap:wrap;
+  flex-direction:row;
+  width:100%;
+}
+
+.homePageLi {
+
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  width:25%;
+}
+
+img {
+  width:3rem;
+}
+.deleteEmployee {
+  width:50%;
 }

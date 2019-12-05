@@ -16,17 +16,28 @@ const HomePage = () => {
     makeApiCall()
   }, [])
 
+  const deleteEmployee = async (e) => {
+    const response = await axios.delete(
+      `https://sdg-staff-directory-app.herokuapp.com/api/Strize/Employees/${e}`
+    )
+    window.location.reload()
+  }
+
   return (<>
-  <ul>
+  <ul className="homePageUl">
   {employees.map(employee => {
     return (
     <EmployeeContainer 
-    firstName = {employee.firstName}
+    key = {employee.id}
     id = {employee.id}
+    firstName = {employee.firstName}
     isFullTime = {employee.isFullTime}
     jobTitle = {employee.jobTitle}
     lastName = {employee.lastName}
-    profileImage = {employee.profileImage}/>
+    profileImage = {employee.profileImage}
+    hiredDate = {employee.hiredDate}
+    deleteEmployee = {() => deleteEmployee(employee.id)}
+    />
     )
   })}
   </ul>

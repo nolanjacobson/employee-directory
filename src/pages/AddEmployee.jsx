@@ -1,45 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-// import useSignUpForm from '../hooks/useSignUpForm'
+import { booleanLiteral } from '@babel/types'
 
 const AddEmployee = () => {
-  // state needs to be initialized with a value it can recognize.
-  const [newEmployee, setEmployee] = useState({ firstName: '', lastName: '', })
-  const [employeeId, setEmployeeId] = useState(null)
+  const [newEmployee, setEmployee] = useState({ firstName: '', lastName: '', birthday: '', hiredDate: '', isFullTime: true, profileImage: '', 
+  jobTitle: '', jobDescription: '', })
+  const [employeeId, setEmployeeId] = useState('')
   const [length, setLength] = useState(0)
+  const [today, setToday] = useState(new Date())
 
-  const addEmployee = async e => {
-    e.preventDefault()
+  const addEmployee = async () => {
+
     const response = await axios.post(
       'https://sdg-staff-directory-app.herokuapp.com/api/Strize/Employees/',
       newEmployee
     )
-  }
 
-  const updateEmployee = async () => {
-    const response = await axios.put(
-      `https://sdg-staff-directory-app.herokuapp.com/api/Strize/Employees/${employeeId}`
-    )
-    setEmployeeId(null)
-  }
-
-  const deleteEmployee = async () => {
-    const response = await axios.delete(
-      `https://sdg-staff-directory-app.herokuapp.com/api/Strize/Employees/${employeeId}`
-    )
-    setEmployeeId(null)
-  }
-
-  const getLength = async () => {
-    const response = await axios.get(
-      'https://sdg-staff-directory-app.herokuapp.com/api/Strize/Employees'
-    )
-    setLength(response.data.length)
+    window.alert("Success")
   }
 
   useEffect(() => {
-    getLength()
-    console.log(length)
+    setToday((today.getFullYear()) + '/' + (today.getMonth() + 1) + '/' + today.getDate())
   }, [])
 
   const handleInputChange = event => {
@@ -52,13 +33,14 @@ const AddEmployee = () => {
 
   return (
     <>
-      <form onSubmit={e => addEmployee(e)}>
+      <form>
         <input
           placeholder="First Name"
           value={newEmployee.firstName}
           name="firstName"
           type="text"
           onChange={handleInputChange}
+          required
         />
         <input
           placeholder="Last Name"
@@ -66,25 +48,24 @@ const AddEmployee = () => {
           name="lastName"
           type="text"
           onChange={handleInputChange}
+          required
         />
+        <section>Hired Date:
         <input
-          placeholder="Birthday"
-          value={newEmployee.birthday}
-          name="birthday"
-          type="text"
+          placeholder="Hired Date"
+          value={newEmployee.hiredDate}
+          name="hiredDate"
+          type="date"
+          min="1960-01-01" 
+          max={today}
           onChange={handleInputChange}
-        />
-        <input
-          placeholder="Hired Data"
-          name="hiredData"
-          value={newEmployee.hiredData}
-          type="text"
-        />
-        <input
-          placeholder="Full Time: True or False"
+        /></section>
+        Full Time: 
+          <input
+          placeholder="Full Time: Yes or No"
           name="fullTime"
-          value={newEmployee.fullTime}
-          type="text"
+          value={newEmployee.isFullTime}
+          type="checkbox"
           onChange={handleInputChange}
         />
         <input
@@ -100,6 +81,7 @@ const AddEmployee = () => {
           name="jobTitle"
           type="text"
           onChange={handleInputChange}
+          required
         />
         <input
           placeholder="Job Description"
@@ -107,23 +89,19 @@ const AddEmployee = () => {
           name="jobDescription"
           type="text"
           onChange={handleInputChange}
+          required
         />
-        <button type="submit">Add</button>
-        <button type="submit" onClick={() => updateEmployee()}>
-          Update
-        </button>
+        <div>Birthday:  
+        <input
+          placeholder="Birthday"
+          value={newEmployee.birthday}
+          name="birthday"
+          type="date"
+          min="1920-01-01" max="2005-01-01"
+          onChange={handleInputChange}
+        /></div>
+        <button type="submit" onClick={() => addEmployee()}>Add</button>
       </form>
-      <input
-        placeholder="ID of Employee"
-        type="number"
-        onChange={e => setEmployeeId(e.target.value)}
-      />
-      <button
-        onClick={() => deleteEmployee()}
-        disabled={employeeId === null || length === 0}
-      >
-        Delete Employee
-      </button>
     </>
   )
 }
