@@ -7,7 +7,6 @@ const AddEmployee = props => {
   const [newEmployee, setEmployee] = useState({ id: props.match.params.id, firstName: '', lastName: '', birthday: '', hiredDate: '', isFullTime: true, profileImage: '', 
   jobTitle: '', jobDescription: '', })
   const [employeeId, setEmployeeId] = useState()
-  const [length, setLength] = useState(0)
   const [today, setToday] = useState(new Date())
   const [success, setSuccess] = useState(false)
 
