@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { booleanLiteral } from '@babel/types'
+import {Redirect} from 'react-router-dom'
 
-const AddEmployee = () => {
-  const [newEmployee, setEmployee] = useState({ firstName: '', lastName: '', birthday: '', hiredDate: '', isFullTime: true, profileImage: '', 
+const AddEmployee = props => {
+
+  const [newEmployee, setEmployee] = useState({ id: props.match.params.id, firstName: '', lastName: '', birthday: '', hiredDate: '', isFullTime: true, profileImage: '', 
   jobTitle: '', jobDescription: '', })
-  const [employeeId, setEmployeeId] = useState('')
+  const [employeeId, setEmployeeId] = useState()
   const [length, setLength] = useState(0)
   const [today, setToday] = useState(new Date())
+  const [success, setSuccess] = useState(false)
 
-  const addEmployee = async () => {
-
+  const addEmployee = async e => {
+    e.preventDefault()
     const response = await axios.post(
       'https://sdg-staff-directory-app.herokuapp.com/api/Strize/Employees/',
       newEmployee
-    )
+      )
+    setEmployeeId(response.data.id)
+    setSuccess(true)
 
-    window.alert("Success")
   }
 
   useEffect(() => {
@@ -31,9 +34,11 @@ const AddEmployee = () => {
     }))
   }
 
+  // I had an issue where my function was being called on click instead of on submit
   return (
     <>
-      <form>
+  {success && (<Redirect to={`/Employees/${employeeId}`}/>)}
+      <form onSubmit={addEmployee}>
         <input
           placeholder="First Name"
           value={newEmployee.firstName}
@@ -100,7 +105,7 @@ const AddEmployee = () => {
           min="1920-01-01" max="2005-01-01"
           onChange={handleInputChange}
         /></div>
-        <button type="submit" onClick={() => addEmployee()}>Add</button>
+        <button type="submit">Add</button>
       </form>
     </>
   )
