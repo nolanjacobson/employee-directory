@@ -13,12 +13,14 @@ body {
 
 .companyHeader {
   text-align:center;
+  margin:5rem;
 }
 
 .companyName {
   display:flex;
-  border:2px solid black;
+  justify-content: center;
 }
+
 ul {
   display:flex;
   list-style:none;
@@ -28,10 +30,53 @@ ul {
 
 form {
   display:flex;
-  flex-direction:column;
-  align-items:center;
+  flex-flow: column wrap;
+  justify-content:space-evenly;
 }
 
+form>section {
+  padding:1rem;
+  margin-bottom:1rem;
+  border: 1px solid rgb(82, 82, 82);
+}
+
+span {
+  margin-right:5rem;
+  border: 2px solid lightcyan;
+}
+
+input {
+height:3rem;
+width:40%
+}
+.formButton {
+  border: none;
+  text-align:center;
+}
+
+.addButton {
+  font-size:2.75rem;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.addButton:hover {background-color: #3e8e41}
+
+.addButton:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 .homePageUl {
 
   display:flex;
@@ -45,12 +90,33 @@ form {
   display:flex;
   flex-direction:column;
   flex-wrap:wrap;
+  justify-content: space-evenly;
   width:25%;
+  border:2px solid gainsboro;
+  margin-bottom:2rem;
+  align-items:center;
 }
 
 img {
-  width:3rem;
+  width:3.5rem;
 }
 .deleteEmployee {
   width:50%;
+}
+
+.value {
+  height:auto;
+  width:auto;
+}
+
+.employeePageLi {
+  margin-top:5rem;
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  justify-content: space-evenly;
+  width:25%;
+  border:2px solid gainsboro;
+  margin-bottom:2rem;
+  align-items:center;
 }

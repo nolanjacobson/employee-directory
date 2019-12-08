@@ -1,16 +1,26 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+
 const EmployeeContainer = props => {
+
   return (
-    <li className="homePageLi">
-    <p>{props.id}</p>
-    <Link to={`/Employees/${props.companyName}/${props.id}`}><p>{props.firstName + ' ' + props.lastName}</p></Link>
-    <p>Job: {props.jobTitle === '' ? ('N/A') : (props.jobTitle)}</p>
+    <>
+    
+    <li className="employeePageLi">
+    <p>{props.firstName + ' ' + props.lastName}</p>
     <p>Full Time: {props.isFullTime === true ? ('Yes') : ('No')}</p>
-    <img src={props.profileImage}/>
+    <p>Job: {props.jobTitle === '' ? ('N/A') : (props.jobTitle)}</p>
+    <p>Job Description: {props.jobDescription === '' ? ('N/A') : (props.jobDescription)}</p>
+    <img src={props.profileImage} alt=""/>
+    <p>Birthday: {props.birthday === '' ? ('N/A') : (props.birthday)}</p>
+    <p>Address: {props.address + ', ' + props.city + ', ' + + props.state + ', ' + props.zipCode}</p>
+    <p>Contact Information: {props.email + ' - ' + props.phoneNumber}</p>
+    <p>Emergency Contact Information: {props.emergencyEmail + ' - ' + props.emergencyPhoneNumber}</p>
+    <p>PTO Hours: {props.ptoHours}</p>
     <button className="deleteEmployee" onClick={props.deleteEmployee}>Delete</button>
+    <button className="modifyEmployee" onClick={props.openModal}>Modify</button>
     </li>
-  );
+    </>
+  )
 }
 
 export default EmployeeContainer;
