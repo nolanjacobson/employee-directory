@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Redirect} from 'react-router-dom'
 import EmployeeContainer from './EmployeeContainer'
 import Modal from 'react-modal'
+
 const customStyles = {
 content : {
   top                   : '50%',
@@ -98,6 +99,7 @@ const ViewEmployee =  props => {
       style={customStyles}
       ariaHideApp={false}
       contentLabel="Example Modal">
+      <button onClick={closeModal}>Back</button>
       <form onSubmit={updateEmployeeApiCall}>
         <input
           placeholder="First Name"
