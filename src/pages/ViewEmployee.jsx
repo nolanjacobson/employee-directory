@@ -9,7 +9,7 @@ const ViewEmployee =  props => {
   
   useEffect(() => {
     const makeApiCall = async () => {
-      const response = await axios.get(`https://sdg-staff-directory-app.herokuapp.com/api/Strize/Employees/${props.match.params.id}`)
+      const response = await axios.get(`https://sdg-staff-directory-app.herokuapp.com/api/${props.match.params.companyName}/Employees/${props.match.params.id}`)
       setEmployeeData(response.data)
       console.log(response.data)
     }
@@ -30,7 +30,7 @@ const ViewEmployee =  props => {
      <p>{employeeData.hiredData}</p>
      <p>{employeeData.emergencyContactPhone + employeeData.emergencyContactAddress}</p>
      <p>{employeeData.ptoHours}</p>
-     <Link to={`/Employees/${props.match.params.id}/Update`}><button>Modify</button></Link>
+     <Link to={`/Employees/${props.match.params.companyName}/${props.match.params.id}/Update`}><button>Modify</button></Link>
      </li>
     </ul>
   );

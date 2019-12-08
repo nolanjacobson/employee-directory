@@ -7,14 +7,15 @@ import ViewEmployee from './pages/ViewEmployee'
 import AddEmployee from './pages/AddEmployee'
 import UpdateEmployees from './pages/UpdateEmployees'
 const App = () => {
+
   return (
     <Router>
       <NavBar />
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
-        <Route exact path="/Employees/:id" component={ViewEmployee}></Route>
-        <Route exact path="/Employees/:id/Update" component={UpdateEmployees}></Route>
-        <Route exact path="/AddEmployee" component={AddEmployee}></Route>
+        <Route exact path="/Employees/:companyName/:id" component={ViewEmployee}></Route>
+        <Route exact path="/Employees/:companyName/:id/Update" component={UpdateEmployees}></Route>
+        <Route exact path="/Employees/AddEmployee" component={AddEmployee}></Route>
         <Route path="*" component={NotFound}></Route>
       </Switch>
     </Router>

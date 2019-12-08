@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
@@ -9,11 +10,12 @@ const AddEmployee = props => {
   const [employeeId, setEmployeeId] = useState()
   const [today, setToday] = useState(new Date())
   const [success, setSuccess] = useState(false)
-
+  const [companyName, setCompanyName] = useState('')
+  
   const addEmployee = async e => {
     e.preventDefault()
     const response = await axios.post(
-      'https://sdg-staff-directory-app.herokuapp.com/api/Strize/Employees/',
+      `https://sdg-staff-directory-app.herokuapp.com/api/${companyName}/Employees/`,
       newEmployee
       )
     setEmployeeId(response.data.id)
@@ -36,8 +38,16 @@ const AddEmployee = props => {
   // I had an issue where my function was being called on click instead of on submit
   return (
     <>
-  {success && (<Redirect to={`/Employees/${employeeId}`}/>)}
+  {success && (<Redirect to={`/Employees/${companyName}/${employeeId}`}/>)}
       <form onSubmit={addEmployee}>
+      <input
+          placeholder="Company Name"
+          value={newEmployee.companyName}
+          name="companyName"
+          type="text"
+          onChange={e => setCompanyName(e.target.value)}
+          required
+        />
         <input
           placeholder="First Name"
           value={newEmployee.firstName}

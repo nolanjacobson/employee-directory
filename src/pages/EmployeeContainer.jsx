@@ -4,7 +4,7 @@ const EmployeeContainer = props => {
   return (
     <li className="homePageLi">
     <p>{props.id}</p>
-    <Link to={`/Employees/${props.id}`}><p>{props.firstName + ' ' + props.lastName}</p></Link>
+    <Link to={`/Employees/${props.companyName}/${props.id}`}><p>{props.firstName + ' ' + props.lastName}</p></Link>
     <p>Job: {props.jobTitle === '' ? ('N/A') : (props.jobTitle)}</p>
     <p>Full Time: {props.isFullTime === true ? ('Yes') : ('No')}</p>
     <img src={props.profileImage}/>

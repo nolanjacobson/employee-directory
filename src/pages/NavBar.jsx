@@ -2,19 +2,20 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 
 const NavBar = () => {
-  return(<header>
-  <h1 className="strizeHeader">Strize Employee Directory</h1>
+  return(
+  <header>
   <nav>
     <ul>
       <li>
         <Link to="/">All Employees</Link>
       </li>
       <li>
-        <Link to="/AddEmployee">Add Employee</Link>
+        <Link to={`/Employees/AddEmployee`}>Add Employee</Link>
       </li>
     </ul>
   </nav>
-</header>)
+</header>
+)
 }
 
 export default NavBar;

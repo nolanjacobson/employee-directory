@@ -11,10 +11,14 @@ body {
   min-height: 100%;
 }
 
-.strizeHeader {
+.companyHeader {
   text-align:center;
 }
 
+.companyName {
+  display:flex;
+  border:2px solid black;
+}
 ul {
   display:flex;
   list-style:none;
