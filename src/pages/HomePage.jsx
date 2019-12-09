@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom'
 const HomePage = () => {
 
   const [employees, setEmployees] = useState([])
-  const [value, setValue] = useState(localStorage.getItem('valueOfCompany') || 'Strize')
-  const [valueOnClick, setValueOnClick] = useState(localStorage.getItem('valueOfCompany') || 'Strize')
+  const [value, setValue] = useState(localStorage.getItem('valueOfCompany') || 'Nurse 2 Nurse Staffing')
+  const [valueOnClick, setValueOnClick] = useState(localStorage.getItem('valueOfCompany') || 'Nurse 2 Nurse Staffing')
 
     useEffect(() =>
     {
@@ -35,6 +35,7 @@ const HomePage = () => {
   </section>
   <h1 className="companyHeader">{valueOnClick} Employee Directory</h1>
   <ul className="homePageUl">
+  {employees.length <= 0 && (<p className="null">No Employees Have Been Created</p>)}
   {employees.map(employee => {
     return (
       <li className="homePageLi">

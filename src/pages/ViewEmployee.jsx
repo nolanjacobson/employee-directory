@@ -89,6 +89,7 @@ const ViewEmployee =  props => {
     zipCode = {employee.zipCode}
     state = {employee.state}
     profileImage = {employee.profileImage}
+    ptoHours = {employee.ptoHours}
     hiredDate = {employee.hiredDate}
     deleteEmployee = {() => deleteEmployee(employee.id)}
     openModal = {openModal}/>
@@ -100,7 +101,7 @@ const ViewEmployee =  props => {
       ariaHideApp={false}
       contentLabel="Example Modal">
       <button onClick={closeModal}>Back</button>
-      <form onSubmit={updateEmployeeApiCall}>
+      <form className="modalForm" onSubmit={updateEmployeeApiCall}>
         <input
           placeholder="First Name"
           value={updateEmployee.firstName}
@@ -117,7 +118,8 @@ const ViewEmployee =  props => {
           onChange={handleInputChange}
           required
         />
-        <section>Hired Date:
+        <section>
+          <span>Hired Date:</span>
         <input
           placeholder="Hired Date"
           value={updateEmployee.hiredDate}
@@ -127,14 +129,15 @@ const ViewEmployee =  props => {
           max={updateEmployee.today}
           onChange={handleInputChange}
         /></section>
-        Full Time: 
+        <section>
+        <span>Full Time:</span>
           <input
           placeholder="Full Time: Yes or No"
           name="fullTime"
           value={updateEmployee.isFullTime}
           type="checkbox"
           onChange={handleInputChange}
-        />
+        /></section>
         <input
           placeholder="Profile Image Link"
           value={updateEmployee.profileImage}
@@ -158,7 +161,8 @@ const ViewEmployee =  props => {
           onChange={handleInputChange}
           required
         />
-        <div>Birthday:  
+        <section>
+        <span>Birthday:</span>
         <input
           placeholder="Birthday"
           value={updateEmployee.birthday}
@@ -166,7 +170,7 @@ const ViewEmployee =  props => {
           type="date"
           min="1920-01-01" max="2005-01-01"
           onChange={handleInputChange}
-        /></div>
+        /></section>
         <button type="submit">Update</button>
       </form>
         </Modal>

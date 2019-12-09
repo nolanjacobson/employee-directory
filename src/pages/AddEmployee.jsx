@@ -19,8 +19,9 @@ const AddEmployee = () => {
       newEmployee
       )
     setEmployeeId(response.data.id)
+    if (response === 200) {
     setSuccess(true)
-
+    }
   }
 
   useEffect(() => {
@@ -120,7 +121,7 @@ const AddEmployee = () => {
           placeholder="PTO Hours"
           value={newEmployee.ptoHours}
           name="ptoHours"
-          type="text"
+          type="number"
           onChange={handleInputChange}
         /></section>
         <section className="formProfileImage">
